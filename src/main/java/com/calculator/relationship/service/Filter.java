@@ -97,15 +97,16 @@ public class Filter {
 
         GetId(selector, hash, result);
 
-            /*
-            Console.Write("out:");
-            foreach(String s in result)
-            {
-                if (s == "") Console.Write("_ ");
-                else Console.Write(s+" ");
+
+        System.out.println("out:");
+        for (Object s : result) {
+            if (s == "") {
+                System.out.println("_ ");
+            } else {
+                System.out.println(s + " ");
             }
-            Console.Write("\n");
-            */
+        }
+        System.out.println("\n");
 
         return result;
     }

@@ -1,8 +1,6 @@
-package model;
+package com.calculator.relationship.service;
 
-import com.calculator.relationship.service.DataSource;
-import com.calculator.relationship.service.Filter;
-import com.calculator.relationship.service.Searcher;
+import model.DataSource;
 
 import java.util.HashMap;
 import java.util.List;

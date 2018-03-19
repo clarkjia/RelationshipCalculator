@@ -1,7 +1,7 @@
-package model;
+package com.calculator.relationship.service;
 
 import com.alibaba.fastjson.JSONObject;
-import com.calculator.relationship.service.DataSource;
+import model.DataSource;
 
 import java.util.Set;
 
@@ -37,7 +37,7 @@ class SearchModel {
 
     }
 
-    public void GetChain() {
+    public void getChain() {
         Boolean found = false;
         String temp = keyword.replaceAll("^[一|二|三|四|五|六|七|八|九|十]+", "x");
         String k1 = "|" + temp + ",";
@@ -79,4 +79,11 @@ class SearchModel {
 
         return s;
     }
+    public static void main(String[] args) {
+        SearchModel searchModel = new SearchModel();
+        searchModel.setKeyword("姑曾外祖母");
+        searchModel.getChain();
+        System.out.println("他和你的关系：" + searchModel.getResult());
+    }
+
 }

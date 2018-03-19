@@ -1,9 +1,8 @@
-package com.calculator.relationship.service;
+package model;
 
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import model.DataStore;
 
 public class DataSource {
     private String data;
