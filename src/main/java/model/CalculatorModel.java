@@ -7,8 +7,6 @@ import com.calculator.relationship.service.Searcher;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 class CalculatorModel {
     private String result;
@@ -108,13 +106,8 @@ class CalculatorModel {
 
     public static void main(String[] args) {
         CalculatorModel calculator = new CalculatorModel();
-        calculator.setInputText("我的爸爸的爸爸");
+        calculator.setInputText("我的爸爸的妈妈的弟弟的哥哥的爸爸的弟弟的妹妹");
         calculator.GetResult();
-        System.out.println("abac".replaceAll("a(\\w)", "$1$1")); //bbcc
-        Pattern p = Pattern.compile("[a-z]{3}");
-        Matcher m = p.matcher("acc");
-        boolean b = m.matches();
-        System.out.println("b=" + b);
-        System.out.println("result=" + calculator.getResult());
+        System.out.println("您应该称呼：" + calculator.getResult());
     }
 }
