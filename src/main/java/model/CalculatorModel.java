@@ -7,6 +7,8 @@ import com.calculator.relationship.service.Searcher;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 class CalculatorModel {
     private String result;
@@ -27,7 +29,38 @@ class CalculatorModel {
     }
 
     public void setInputText(String inputText) {
+        inputText = inputText.replaceFirst("我的爸爸", ",f");
+        inputText = inputText.replaceFirst("我的父亲", ",f");
+        inputText = inputText.replaceAll("的父亲", ",f");
+        inputText = inputText.replaceAll("的爸爸", ",f");
+        inputText = inputText.replaceFirst("我的妈妈", ",m");
+        inputText = inputText.replaceAll("的妈妈", ",m");
+        inputText = inputText.replaceFirst("我的母亲", ",m");
+        inputText = inputText.replaceAll("的母亲", ",m");
+        inputText = inputText.replaceFirst("我的哥哥", ",ob");
+        inputText = inputText.replaceAll("的哥哥", ",ob");
+        inputText = inputText.replaceFirst("我的兄长", ",ob");
+        inputText = inputText.replaceAll("的兄长", ",ob");
+        inputText = inputText.replaceFirst("我的弟弟", ",lb");
+        inputText = inputText.replaceAll("的弟弟", ",lb");
+        inputText = inputText.replaceFirst("我的姐姐", ",os");
+        inputText = inputText.replaceAll("的姐姐", ",os");
+        inputText = inputText.replaceFirst("我的妹妹", ",ls");
+        inputText = inputText.replaceAll("的妹妹", ",ls");
+        inputText = inputText.replaceFirst("我的老公", ",h");
+        inputText = inputText.replaceAll("的老公", ",h");
+        inputText = inputText.replaceFirst("我的丈夫", ",h");
+        inputText = inputText.replaceAll("的丈夫", ",h");
+        inputText = inputText.replaceFirst("我的老婆", ",w");
+        inputText = inputText.replaceAll("的老婆", ",w");
+        inputText = inputText.replaceFirst("我的妻子", ",w");
+        inputText = inputText.replaceAll("的妻子", ",w");
+        inputText = inputText.replaceFirst("我的儿子", ",s");
+        inputText = inputText.replaceAll("的儿子", ",s");
+        inputText = inputText.replaceFirst("我的女儿", ",d");
+        inputText = inputText.replaceAll("的女儿", ",d");
         this.inputText = inputText;
+        System.out.println("inputText=" + inputText);
     }
 
     public CalculatorModel() {
@@ -73,10 +106,15 @@ class CalculatorModel {
         }
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         CalculatorModel calculator = new CalculatorModel();
         calculator.setInputText("我的爸爸的爸爸");
         calculator.GetResult();
-        System.out.println("result="+calculator.getResult());
+        System.out.println("abac".replaceAll("a(\\w)", "$1$1")); //bbcc
+        Pattern p = Pattern.compile("[a-z]{3}");
+        Matcher m = p.matcher("acc");
+        boolean b = m.matches();
+        System.out.println("b=" + b);
+        System.out.println("result=" + calculator.getResult());
     }
 }
