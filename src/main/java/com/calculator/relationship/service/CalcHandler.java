@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class CalculatorHandler {
+public class CalcHandler {
     private String result;
     private String inputText;
 
@@ -67,7 +67,7 @@ public class CalculatorHandler {
         System.out.println("inputText=" + inputText);
     }
 
-    public CalculatorHandler() {
+    public CalcHandler() {
         result = "";
         inputText = "";
         try {
@@ -79,7 +79,7 @@ public class CalculatorHandler {
 
     }
 
-    public void GetResult() {
+    public void calcProcess() {
         result = "";
 
         Searcher searcher = new Searcher(src.GetJson());
@@ -99,7 +99,6 @@ public class CalculatorHandler {
                     String res = searcher.Who(s);
                     if (res != "你们好像不是很熟哦~~ ") {
                         result += res;
-                        result += "\n";
                     }
                 }
 
@@ -111,9 +110,9 @@ public class CalculatorHandler {
     }
 
     public static void main(String[] args) {
-        CalculatorHandler calculator = new CalculatorHandler();
+        CalcHandler calculator = new CalcHandler();
         calculator.setInputText("我的爸爸的妈妈的弟弟的哥哥的爸爸的弟弟的妹妹");
-        calculator.GetResult();
+        calculator.calcProcess();
         System.out.println("您应该称呼：" + calculator.getResult());
     }
 }
