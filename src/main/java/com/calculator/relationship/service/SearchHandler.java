@@ -47,8 +47,7 @@ public class SearchHandler {
         String k3 = "," + temp + "|";
         String k4 = "|" + temp + "|";
         Set keys = obj.keySet();
-        for (Object key : keys
-                ) {
+        for (Object key : keys ) {
             if (obj.get(key).toString().contains(k1) || obj.get(key).toString().contains(k2) || obj.get(key).toString().contains(k3) || obj.get(key).toString().contains(k4)) {
                 result = Transfer((String) key);
                 found = true;
@@ -81,6 +80,7 @@ public class SearchHandler {
 
         return s;
     }
+
     public static void main(String[] args) {
         SearchHandler searchModel = new SearchHandler();
         searchModel.setKeyword("外婆");
