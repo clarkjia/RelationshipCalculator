@@ -2,9 +2,11 @@ package com.calculator.relationship.service;
 
 import com.alibaba.fastjson.JSONObject;
 import model.DataSource;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
+@Service
 public class SearchHandler {
     private DataSource src;
     private JSONObject obj;

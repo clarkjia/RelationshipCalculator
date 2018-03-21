@@ -24,17 +24,16 @@ import java.util.Map;
 @Service
 public class CalcRequestHandler extends RequestHandler {
 
+    private final static Logger LOG = LoggerFactory.getLogger(CalcRequestHandler.class);
 
     @Autowired
     private CalcHandler calculatorModel;
-    private final static Logger LOG = LoggerFactory.getLogger(CalcRequestHandler.class);
+
     private String skillApplicationId;
 
     private static final String INTENT_RELATIONSHIP_CALCULATOR = "RelationshipCalculator";
-    public static final String SLOT_NAME_SHIPNAME = "SHIPNAME";
 
-    private static final String SLOT_KEYWORD = "keyword";
-    private static final String SLOT_CATEGORY = "category";
+    public static final String SLOT_NAME_SHIPNAME = "SHIPNAME";
 
     @Override
     public boolean validate(SkillData skillData) {
