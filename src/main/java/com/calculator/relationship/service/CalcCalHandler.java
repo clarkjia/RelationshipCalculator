@@ -3,22 +3,31 @@ package com.calculator.relationship.service;
 import com.jd.alpha.skill.client.RequestHandler;
 import com.jd.alpha.skill.client.entity.request.SkillData;
 import com.jd.alpha.skill.client.entity.request.SkillRequestIntent;
+import com.jd.alpha.skill.client.entity.request.SkillRequestSlot;
 import com.jd.alpha.skill.client.entity.response.SkillResponse;
 import com.jd.alpha.skill.client.entity.response.SkillResponseDetails;
 import com.jd.alpha.skill.client.entity.response.SkillResponseOutput;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+
+import java.util.Map;
 
 
-public class MyCalHandler extends RequestHandler {
-   private final static Logger LOG = LoggerFactory.getLogger(MyCalHandler.class);
+@Service
+public class CalcCalHandler extends RequestHandler {
+
+   @Autowired
+   private CalculatorHandler calculatorModel;
+   private final static Logger LOG = LoggerFactory.getLogger(CalcCalHandler.class);
    @Value("${xxx_skill_id}")
    private String skillApplicationId;
   
    private static final String INTENT_QUERY = "query";
-   private static final String INTENT_PLAY = "play";
-   private static final String SLOT_NAME = "name";
+   private static final String INTENT_RELATIONSHIP_CALCULATOR = "RelationshipCalculator";
+   private static final String SLOT_SHIPNAME = "shipname";
    private static final String SLOT_KEYWORD = "keyword";
    private static final String SLOT_CATEGORY = "category";
 
@@ -40,7 +49,7 @@ public class MyCalHandler extends RequestHandler {
       response.setShouldEndSession(false);
       SkillResponseDetails skillResponseDetails = new SkillResponseDetails();
       SkillResponseOutput skillResponseOutput = skillResponseDetails.getOutput();
-      skillResponseOutput.setText("欢迎使用xxxx服务，你可以对我说我想听音乐");
+      skillResponseOutput.setText("欢迎使用亲戚称呼查询服务，您可以对我说您想问的亲戚怎么称呼，比如：我的妈妈的妈妈的弟弟称呼什么");
       skillResponseDetails.setOutput(skillResponseOutput);
       response.setResponse(skillResponseDetails);
       return response;
@@ -50,8 +59,19 @@ public class MyCalHandler extends RequestHandler {
    public SkillResponse onIntentRequest(SkillData skillData) {
       try {
          SkillRequestIntent skillRequestIntent = skillData.getRequest().getIntent();
-         if (INTENT_PLAY.equals(skillRequestIntent.getName())) {
-            // TODO
+         if (INTENT_RELATIONSHIP_CALCULATOR.equals(skillRequestIntent.getName())) {
+            Map<String, SkillRequestSlot> slots = skillRequestIntent.getSlots();
+            SkillRequestSlot slot = slots.get("SLOT_SHIPNAME");
+            String value  = slot.getValue();
+            calculatorModel.setInputText(value);
+            String result = calculatorModel.getResult();
+            SkillResponse response = new SkillResponse();
+            SkillResponseDetails skillResponseDetails = new SkillResponseDetails();
+            SkillResponseOutput skillResponseOutput = skillResponseDetails.getOutput();
+            skillResponseOutput.setText("您应该称呼"+result);
+            skillResponseDetails.setOutput(skillResponseOutput);
+            response.setResponse(skillResponseDetails);
+            return response;
          } else if (INTENT_QUERY.equals(skillRequestIntent.getName())) {
             // TODO
          } else {
@@ -75,7 +95,7 @@ public class MyCalHandler extends RequestHandler {
       response.setSkill(skillApplicationId);
       SkillResponseDetails skillResponseDetails = new SkillResponseDetails();
       SkillResponseOutput skillResponseOutput = skillResponseDetails.getOutput();
-      skillResponseOutput.setText("已退出，期待您再次使用");
+      skillResponseOutput.setText("已退出，小七期待您再次使用");
       skillResponseDetails.setOutput(skillResponseOutput);
       response.setResponse(skillResponseDetails);
       response.setShouldEndSession(true);
