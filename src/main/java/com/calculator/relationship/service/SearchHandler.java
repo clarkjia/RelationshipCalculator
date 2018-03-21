@@ -81,9 +81,10 @@ public class SearchHandler {
     }
     public static void main(String[] args) {
         SearchHandler searchModel = new SearchHandler();
-        searchModel.setKeyword("姑曾外祖母");
+        searchModel.setKeyword("外祖母");
         searchModel.getChain();
-        System.out.println("他和你的关系：" + searchModel.getResult());
+        System.out.println("输入查询条件：" + searchModel.getKeyword());
+        System.out.println("TA 和你的关系：" + searchModel.getResult());
     }
 
 }

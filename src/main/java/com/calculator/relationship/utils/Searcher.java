@@ -1,4 +1,4 @@
-package com.calculator.relationship.common;
+package com.calculator.relationship.utils;
 
 import com.alibaba.fastjson.JSONObject;
 
